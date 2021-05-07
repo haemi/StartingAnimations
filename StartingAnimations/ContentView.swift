@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var alignment = Alignment.center
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack(alignment: alignment) {
+            Color.white
+                .edgesIgnoringSafeArea(.all)
+            Text("Hello World")
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .onAppear(perform: onAppearAnimations)
+    }
+
+    private func onAppearAnimations() {
+//        withAnimation(Animation.easeOut(duration: 1)) { // not sluggish
+        withAnimation(Animation.easeOut(duration: 1).delay(1)) { // sluggish
+            alignment = .top
+        }
     }
 }
 
